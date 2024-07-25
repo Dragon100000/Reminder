@@ -14,6 +14,7 @@ function showReminder() {
     alert("Stand up!");
     // Update the timestamp in localStorage to current time
     localStorage.setItem('standUpReminder', Date.now());
+    checkReminder()
 }
 
 // Function to check if the reminder should be shown
@@ -31,6 +32,8 @@ function checkReminder() {
         
         if (minutesPassed >= 1) {
             showReminder();
+        } else {
+            checkReminder();
         }
     }
 }
@@ -40,10 +43,6 @@ window.addEventListener('load', function() {
     checkReminder();
 });
 
-// Check the reminder every time the user navigates within the website
-window.addEventListener('beforeunload', function() {
-    checkReminder();
-});
         </script>
     </body>
 </html>
