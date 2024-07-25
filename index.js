@@ -19,7 +19,7 @@ function checkStandUpReminder() {
         let minutesPassed = Math.floor(timeDiff / (1000 * 60));
         
         // Check if 40 minutes have passed since the last reminder
-        if (minutesPassed >= 1) {
+        if (minutesPassed <= 1) {
             showStandUpReminder();
         }
     }
