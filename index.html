@@ -10,38 +10,38 @@
     <body>
         <script>
             // Function to show the stand-up reminder
-function showReminder() {
-    alert("Stand up!");
-    // Update the timestamp in localStorage to current time
-    localStorage.setItem('standUpReminder', Date.now());
-    checkReminder()
-}
+            function showReminder() {
+                alert("Stand up!");
+                // Update the timestamp in localStorage to current time
+                localStorage.setItem('standUpReminder', Date.now());
+                checkReminder();
+            }
 
-// Function to check if the reminder should be shown
-function checkReminder() {
-    // Retrieve the last reminder timestamp from localStorage
-    let lastReminder = localStorage.getItem('standUpReminder');
-    if (lastReminder === null) {
-        // If no reminder timestamp exists (first visit), set one
-        localStorage.setItem('standUpReminder', Date.now());
-    } else {
-        // Calculate the time difference between now and the last reminder
-        let timeDiff = Date.now() - parseInt(lastReminder, 10);
-        // Convert milliseconds to minutes
-        let minutesPassed = Math.floor(timeDiff / (1000 * 60));
+            // Function to check if the reminder should be shown
+            function checkReminder() {
+                // Retrieve the last reminder timestamp from localStorage
+                let lastReminder = localStorage.getItem('standUpReminder');
+                if (lastReminder === null) {
+                    // If no reminder timestamp exists (first visit), set one
+                    localStorage.setItem('standUpReminder', Date.now());
+                } else {
+                    // Calculate the time difference between now and the last reminder
+                    let timeDiff = Date.now() - parseInt(lastReminder, 10);
+                    // Convert milliseconds to minutes
+                    let minutesPassed = Math.floor(timeDiff / (1000 * 60));
         
-        if (minutesPassed >= 1) {
-            showReminder();
-        } else {
-            checkReminder();
-        }
-    }
-}
+                    if (minutesPassed >= 1) {
+                        showReminder();
+                    } else {
+                        checkReminder();
+                    }
+                }
+            }
 
-// Check the reminder every time the page loads
-window.addEventListener('load', function() {
-    checkReminder();
-});
+            // Check the reminder every time the page loads
+            window.addEventListener('load', function() {
+                checkReminder();
+            });
 
         </script>
     </body>
