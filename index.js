@@ -1,6 +1,6 @@
 // Function to show the stand-up reminder
 function showStandUpReminder() {
-    alert("It's time to stand up and stretch!");
+    alert("Stand up!");
     // Update the timestamp in localStorage to current time
     localStorage.setItem('standUpReminder', Date.now());
 }
