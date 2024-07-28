@@ -20,11 +20,12 @@
                 if (lastReminder === null) {
                     // If no reminder timestamp exists (first visit), set one
                     localStorage.setItem('timestamp', Date.now());
-                }
+                };
                 // Calculate the time difference between now and the last reminder
                 let timeDiff = Math.floor(Date.now() - +lastReminder);
                 // Convert milliseconds to minutes
                 let minutesPassed = Math.floor(timeDiff / (1000 * 60));
+                console.log(minutesPassed);
         
                 if (minutesPassed >= 1) {
                     show();
