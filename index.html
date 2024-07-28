@@ -22,7 +22,7 @@
                     localStorage.setItem('timestamp', Date.now());
                 };
                 // Calculate the time difference between now and the last reminder
-                let timeDiff = Math.floor(Date.now() - +lastReminder);
+                let timeDiff = Date.now() - parseInt(lastReminder);
                 // Convert milliseconds to minutes
                 let minutesPassed = Math.floor(timeDiff / (1000 * 60));
                 console.log(minutesPassed);
