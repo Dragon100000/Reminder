@@ -9,39 +9,33 @@
     </head>
     <body>
         <script>
-            // Function to show the stand-up reminder
-            function showReminder() {
+            function show() {//gives alert, sets the timestamp, runs check
                 alert("Stand up!");
-                // Update the timestamp in localStorage to current time
-                localStorage.setItem('standUpReminder', Date.now());
-                checkReminder();
+                localStorage.setItem('timestamp', Date.now());
+                check();
             }
 
-            // Function to check if the reminder should be shown
-            function checkReminder() {
-                // Retrieve the last reminder timestamp from localStorage
-                let lastReminder = localStorage.getItem('standUpReminder');
+            function check() {//gets the timestamp(or sets one), finds the difference between now and the last alert, 
+                let lastReminder = localStorage.getItem('timestamp');
                 if (lastReminder === null) {
                     // If no reminder timestamp exists (first visit), set one
-                    localStorage.setItem('standUpReminder', Date.now());
-                    checkReminder();
-                } else {
-                    // Calculate the time difference between now and the last reminder
-                    let timeDiff = Date.now() - parseInt(lastReminder, 10);
-                    // Convert milliseconds to minutes
-                    let minutesPassed = Math.floor(timeDiff / (1000 * 60));
+                    localStorage.setItem('timestamp', Date.now());
+                }
+                // Calculate the time difference between now and the last reminder
+                let timeDiff = Math.floor(Date.now() - +lastReminder);
+                // Convert milliseconds to minutes
+                let minutesPassed = Math.floor(timeDiff / (1000 * 60));
         
-                    if (minutesPassed >= 1) {
-                        showReminder();
-                    } else {
-                        checkReminder();
-                    }
+                if (minutesPassed >= 1) {
+                    show();
+                } else {
+                    check();
                 }
             }
 
             // Check the reminder every time the page loads
             window.addEventListener('load', function() {
-                checkReminder();
+                check();
             });
 
         </script>
