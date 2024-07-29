@@ -35,9 +35,9 @@
                         };
                         const notification = new Notification('30 minutes have passed', options);
                         notification.onclick = function() {
-                            //window.focus();
-                            //notification.close();
-                            window.open("http://localhost:8000/index.html");
+                            window.focus();
+                            notification.close();
+                        
                         };
                         
                         document.getElementById('text').textContent=message;
@@ -54,9 +54,9 @@
                 };
                 const notification = new Notification('30 minutes have passed', options);
                 notification.onclick = function() {
-                    //window.focus();
-                    //notification.close();
-                    window.open("http://localhost:8000/index.html");
+                    window.focus();
+                    notification.close();
+                    //window.open("http://localhost:8000/index.html");
                 };
 
                 document.getElementById('text').textContent=message;
@@ -67,9 +67,9 @@
             function show2() {
                 const notification = new Notification('Ok. You are good to use your computer again.');
                 notification.onclick = function() {
-                    //window.focus();
-                    //notification.close();
-                    window.open("http://localhost:8000/index.html");
+                    window.focus();
+                    notification.close();
+                    //window.open("http://localhost:8000/index.html");
                 };
                 setTimeout(check, 0);
             }
