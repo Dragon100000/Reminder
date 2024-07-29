@@ -16,10 +16,10 @@
     <body>
         <p class="text" id="text"></p>
         <audio id="sound" src=""></audio>
-
+        <button onclick="changeBreak">Change break time</button>
         <script>
             const workouts = ['push-ups', 'pull-ups', 'pistol squats on each leg', 'goblet squats', 'jumping-jacks', 'minutes of stretches', 'russian twists with 10 pounds'];
-
+            let breakTime = 30;
             function show() {//gives alert, sets the timestamp, gives notification, runs check
                 let reps = Math.floor(Math.random()*19)+2;
                 let message = 'Do ' + reps + ' ' + workouts[Math.floor(Math.random()*6)];
@@ -33,7 +33,8 @@
                         const options = {
                             body: message
                         };
-                        const notification = new Notification('30 minutes have passed', options);
+                        const title = breakTime+' minutes have passed'
+                        const notification = new Notification(title, options);
                         notification.onclick = function() {
                             window.focus();
                             notification.close();
@@ -52,7 +53,8 @@
                 const options = {
                     body: message
                 };
-                const notification = new Notification('30 minutes have passed', options);
+                const title = breakTime+' minutes have passed';
+                const notification = new Notification(title, options);
                 notification.onclick = function() {
                     window.focus();
                     notification.close();
@@ -61,7 +63,7 @@
 
                 document.getElementById('text').textContent=message;
                 localStorage.setItem('timestamp', Date.now());
-                setTimeout(show2, 3);//show2, 300000
+                setTimeout(show2, 300000);//show2, 300000
             };
 
             function show2() {
@@ -85,10 +87,10 @@
                 // Calculate the time difference between now and the last reminder
                 let timeDiff = Date.now() - parseInt(lastReminder);
                 // Convert milliseconds to minutes
-                let minutesPassed = Math.floor(timeDiff / 6000);//60000
+                let minutesPassed = Math.floor(timeDiff / 60000);//60000
                 console.log(minutesPassed);
         
-                if (minutesPassed >= 10) {//every 30 minutes
+                if (minutesPassed >= breakTime) {//every 30 minutes
                     show();
                 } else {
                     setTimeout(check, 0);
@@ -100,6 +102,11 @@
                 setTimeout(show2, 0);//check
             });
 
+            function changeBreak() {
+                prompt('How long (in minutes) would you like the break to be?', (answer)=>{
+                    breakTime = answer;
+                });
+            }
         </script>
     </body>
 </html>
