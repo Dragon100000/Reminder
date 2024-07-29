@@ -4,39 +4,100 @@
         <style>
             body{
                 background-color: black;
+                -webkit-text-fill-color: rgb(165, 228, 94);
+                font-family: cursive;
+                position: absolute;
+                top: 10%;
+                right: 40%;
             }
+            
         </style>
     </head>
     <body>
+        <p class="text" id="text"></p>
+        <audio id="sound" src=""></audio>
+
         <script>
-            function show() {//gives alert, sets the timestamp, runs check
-                alert("Stand up!");
+            const workouts = ['push-ups', 'pull-ups', 'pistol squats on each leg', 'goblet squats', 'jumping-jacks', 'minutes of stretches', 'russian twists with 10 pounds'];
+
+            function show() {//gives alert, sets the timestamp, gives notification, runs check
+                let reps = Math.floor(Math.random()*19)+2;
+                let message = 'Do ' + reps + ' ' + workouts[Math.floor(Math.random()*6)];
+                //alert('alert');
+
+                if (Notification.permission !== "granted") {
+                Notification.requestPermission().then(permission => {
+
+                    if (permission==='granted') {
+
+                        const options = {
+                            body: message
+                        };
+                        const notification = new Notification('30 minutes have passed', options);
+                        notification.onclick = function() {
+                            //window.focus();
+                            //notification.close();
+                            window.open("http://localhost:8000/index.html");
+                        };
+                        
+                        document.getElementById('text').textContent=message;
+                        localStorage.setItem('timestamp', Date.now());
+                        setTimeout(show2, 300000);//show2, 300000
+                    } else {
+                        console.log('declined');
+                    };
+                });
+                };
+
+                const options = {
+                    body: message
+                };
+                const notification = new Notification('30 minutes have passed', options);
+                notification.onclick = function() {
+                    //window.focus();
+                    //notification.close();
+                    window.open("http://localhost:8000/index.html");
+                };
+
+                document.getElementById('text').textContent=message;
                 localStorage.setItem('timestamp', Date.now());
-                check();
+                setTimeout(show2, 3);//show2, 300000
+            };
+
+            function show2() {
+                const notification = new Notification('Ok. You are good to use your computer again.');
+                notification.onclick = function() {
+                    //window.focus();
+                    //notification.close();
+                    window.open("http://localhost:8000/index.html");
+                };
+                setTimeout(check, 0);
             }
 
             function check() {//gets the timestamp(or sets one), finds the difference between now and the last alert, 
                 let lastReminder = localStorage.getItem('timestamp');
+
                 if (lastReminder === null) {
                     // If no reminder timestamp exists (first visit), set one
                     localStorage.setItem('timestamp', Date.now());
                 };
+                
                 // Calculate the time difference between now and the last reminder
                 let timeDiff = Date.now() - parseInt(lastReminder);
                 // Convert milliseconds to minutes
-                let minutesPassed = Math.floor(timeDiff / (1000 * 60));
+                let minutesPassed = Math.floor(timeDiff / 6000);//60000
                 console.log(minutesPassed);
         
-                if (minutesPassed >= 1) {
+                if (minutesPassed >= 10) {//every 30 minutes
                     show();
                 } else {
-                    check();
+                    setTimeout(check, 0);
                 }
             }
 
             // Check the reminder every time the page loads
             window.addEventListener('load', function() {
-                check();
+                setTimeout(show2, 0);//check
             });
 
         </script>
