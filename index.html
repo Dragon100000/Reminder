@@ -6,17 +6,34 @@
                 background-color: black;
                 -webkit-text-fill-color: rgb(165, 228, 94);
                 font-family: cursive;
-                position: absolute;
-                top: 10%;
-                right: 40%;
+                text-align: center;
+            }
+            .button{
+                -webkit-text-fill-color: black;
+                background-color: rgb(165, 228, 94);
+                border: 1px, solid, rgb(165, 228, 94);
+                margin: 15% 10% 0% 10%;
+                border-radius: 10px;
+                scale: 90%;
+            }
+            .button:hover{
+                scale: 100%;
+            }
+            .bt{
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 20px;
+            }
+            .text{
+                margin: 15% 0% 0% 0%
             }
             
         </style>
     </head>
     <body>
         <p class="text" id="text"></p>
-        <audio id="sound" src=""></audio>
-        <button onclick="changeBreak">Change break time</button>
+        <p id="rotatingText"></p>
+        <button class="button" id="button" onclick="changeBreak()">Change break time</button>
+        <p class="bt" id="bt"></p>
         <script>
             const workouts = ['push-ups', 'pull-ups', 'pistol squats on each leg', 'goblet squats', 'jumping-jacks', 'minutes of stretches', 'russian twists with 10 pounds'];
             let tWorkouts = {
@@ -29,6 +46,8 @@
                 'russian twists with 10 pounds': 0
             }
             let breakTime = 30;
+            document.getElementById('bt').textContent=breakTime;
+            document.getElementById('text').textContent='You don\'t have any past workouts'
             function show() {//gives alert, sets the timestamp, gives notification, runs check
                 let reps = Math.floor(Math.random()*19)+2;
                 let theWorkout = workouts[Math.floor(Math.random()*6)];
@@ -110,14 +129,32 @@
 
             // Check the reminder every time the page loads
             window.addEventListener('load', function() {
-                setTimeout(show2, 0);//check
+                setTimeout(check, 0);//check
             });
-
+            
             function changeBreak() {
-                prompt('How long (in minutes) would you like the break to be?', (answer)=>{
-                    breakTime = answer;
-                });
+                console.log('prompt')
+                let answer = prompt('How long (in minutes) would you like the break to be?');
+                if (answer.trim ===''||answer===null||isNaN(answer)||Number(answer)<=0){
+                    breakTime = 1;
+                } else if (Number(answer)>30) {
+                    breakTime = 30;
+                } else {
+                    breakTime = parseInt(answer);
+                }
+                document.getElementById('bt').textContent=breakTime;
             }
+            let i = 0;
+            function loop() {
+                if (i >= workouts.length-1) {
+                    setTimeout(()=>{i=0;},1000);
+                }; 
+                document.getElementById('rotatingText').textContent=tWorkouts[workouts[i]]+ ' total '+ workouts[i];
+                i++;
+                setTimeout(loop, 2000); 
+            }
+            setTimeout(loop, 1000);
+
         </script>
     </body>
 </html>
