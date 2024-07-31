@@ -19,6 +19,15 @@
         <button onclick="changeBreak">Change break time</button>
         <script>
             const workouts = ['push-ups', 'pull-ups', 'pistol squats on each leg', 'goblet squats', 'jumping-jacks', 'minutes of stretches', 'russian twists with 10 pounds'];
+            let tWorkouts = {
+                'push-ups': 0,
+                'pull-ups': 0,
+                'pistol squats on each leg': 0,
+                'goblet squats': 0,
+                'jumping-jacks': 0,
+                'minutes of stretches': 0,
+                'russian twists with 10 pounds': 0
+            }
             let breakTime = 30;
             function show() {//gives alert, sets the timestamp, gives notification, runs check
                 let reps = Math.floor(Math.random()*19)+2;
