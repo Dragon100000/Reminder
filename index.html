@@ -51,7 +51,7 @@
             document.getElementById('text').textContent='You don\'t have any past workouts'
             function show() {//gives alert, sets the timestamp, gives notification, runs check
                 let reps = Math.floor(Math.random()*19)+2;
-                let theWorkout = workouts[Math.floor(Math.random()*(workouts.length-1)];
+                let theWorkout = workouts[Math.floor(Math.random()*(workouts.length-1))];
                 let message = 'Do ' + reps + ' ' + theWorkout;
                 tWorkouts[theWorkout]+=reps;
                 //alert('alert');
