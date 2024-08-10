@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Reminder</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="icon2.png">
         <style>
             body{
                 background-color: black;
@@ -49,9 +51,10 @@
             let breakTime = 30;
             document.getElementById('bt').textContent=breakTime;
             document.getElementById('text').textContent='You don\'t have any past workouts'
-            function show() {//gives alert, sets the timestamp, gives notification, runs check
+
+            function show() {//gives alert, sets the timestamp, gives notification
                 let reps = Math.floor(Math.random()*19)+2;
-                let theWorkout = workouts[Math.floor(Math.random()*(workouts.length-1))];
+                let theWorkout = workouts[Math.floor(Math.random()*(workouts.length))];
                 let message = 'Do ' + reps + ' ' + theWorkout;
                 tWorkouts[theWorkout]+=reps;
                 //alert('alert');
@@ -132,6 +135,26 @@
             window.addEventListener('load', function() {
                 setTimeout(check, 0);//check
             });
+
+            //document.addEventListener('visibilitychange', function(){
+                //if (document.visibilityState==="hidden"){
+                    //var link = document.querySelector("link[rel~='icon']");
+                    //if (!link) {
+                        //link = document.createElement('link');
+                        //link.rel = 'icon';
+                        //document.getElementsByTagName('head')[0].appendChild(link);
+                        //}
+                        //link.href = "icon3.png";
+                    //} else {
+                        //var link = document.querySelector("link[rel~='icon']");
+                        //if (!link) {
+                            //link = document.createElement('link');
+                            //link.rel = 'icon';
+                            //document.getElementsByTagName('head')[0].appendChild(link);
+                        //}
+                        //link.href = "icon2.png";
+                    //}
+            //})
             
             function changeBreak() {
                 console.log('prompt')
