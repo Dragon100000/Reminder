@@ -37,7 +37,7 @@
         <button class="button" id="button" onclick="changeBreak()">Change break time</button>
         <p class="bt" id="bt"></p>
         <script>
-            const workouts = ['push-ups', 'pull-ups', 'pistol squats on each leg', 'goblet squats', 'jumping-jacks', 'minutes of stretches', 'russian twists with 10 pounds', 'one-armed pull-ups', 'burpees'];
+            const workouts = ['push-ups', 'pull-ups', 'pistol squats on each leg', 'goblet squats', 'jumping-jacks', 'minutes of stretches', 'russian twists with 10 pounds', 'one-armed pull-ups', 'burpees', 'minute walk outside];
             let tWorkouts = {
                 'push-ups': 0,
                 'pull-ups': 0,
@@ -48,6 +48,7 @@
                 'russian twists with 10 pounds': 0,
                 'one-armed pull-ups': 0,
                 'burpees':0
+                'minute walk outside':0
             }
             let breakTime = 30;
             document.getElementById('bt').textContent=breakTime;
