@@ -81,7 +81,7 @@
                         localStorage.setItem('timestamp', Date.now());
                         setTimeout(show2, 300000);//show2, 300000
                     } else {
-                        console.log('declined');
+                        //console.log('declined');
                     };
                 });
                 };
@@ -124,7 +124,7 @@
                 let timeDiff = Date.now() - parseInt(lastReminder);
                 // Convert milliseconds to minutes
                 let minutesPassed = Math.floor(timeDiff / 60000);//60000
-                console.log(minutesPassed);
+                //console.log(minutesPassed);
         
                 if (minutesPassed >= breakTime) {//every 30 minutes
                     show();
@@ -137,29 +137,29 @@
             window.addEventListener('load', function() {
                 setTimeout(check, 0);//check
             });
-
-            //document.addEventListener('visibilitychange', function(){
-                //if (document.visibilityState==="hidden"){
-                    //var link = document.querySelector("link[rel~='icon']");
-                    //if (!link) {
-                        //link = document.createElement('link');
-                        //link.rel = 'icon';
-                        //document.getElementsByTagName('head')[0].appendChild(link);
-                        //}
-                        //link.href = "icon3.png";
-                    //} else {
-                        //var link = document.querySelector("link[rel~='icon']");
-                        //if (!link) {
-                            //link = document.createElement('link');
-                            //link.rel = 'icon';
-                            //document.getElementsByTagName('head')[0].appendChild(link);
-                        //}
-                        //link.href = "icon2.png";
-                    //}
-            //})
+//maybe delete this cuz i dont know what this does
+        document.addEventListener('visibilitychange', function(){
+                if (document.visibilityState==="hidden"){
+                    var link = document.querySelector("link[rel~='icon']");
+                    if (!link) {
+                        link = document.createElement('link');
+                        link.rel = 'icon';
+                        document.getElementsByTagName('head')[0].appendChild(link);
+                        }
+                        link.href = "icon3.png";
+                    } else {
+                        var link = document.querySelector("link[rel~='icon']");
+                        if (!link) {
+                            link = document.createElement('link');
+                            link.rel = 'icon';
+                            document.getElementsByTagName('head')[0].appendChild(link);
+                        }
+                        link.href = "icon2.png";
+                    }
+            })
             
             function changeBreak() {
-                console.log('prompt')
+                //console.log('prompt')
                 let answer = prompt('How long (in minutes) would you like the break to be?');
                 if (answer.trim ===''||answer===null||isNaN(answer)||Number(answer)<=0){
                     breakTime = 1;
