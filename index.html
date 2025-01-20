@@ -16,17 +16,18 @@
                 border: 1px, solid, rgb(165, 228, 94);
                 margin: 15% 10% 0% 10%;
                 border-radius: 10px;
-                scale: 90%;
+                scale: 190%;
             }
             .button:hover{
-                scale: 100%;
+                scale: 200%;
             }
             .bt{
                 font-family: 'Courier New', Courier, monospace;
-                font-size: 20px;
+                font-size: 50px;
+                margin: 10px, 0px, -1px;
             }
             .text{
-                margin: 15% 0% 0% 0%
+                margin: 15% 0% 0% 0%;
             }
             
         </style>
@@ -35,6 +36,7 @@
         <p class="text" id="text"></p>
         <p id="rotatingText"></p>
         <button class="button" id="button" onclick="changeBreak()">Change break time</button>
+        <p class="bt">current break time:</p>
         <p class="bt" id="bt"></p>
         <script>
             const workouts = ['push-ups', 'pull-ups', 'pistol squats on each leg', 'goblet squats', 'jumping-jacks', 'minutes of stretches', 'russian twists with 10 pounds', 'one-armed pull-ups', 'burpees', 'minute walk outside'];
